@@ -2,31 +2,29 @@
   <div>
     <section>
       <!-- 底部背景 -->
-      <img src="http://web-ffisher.oss-cn-hangzhou.aliyuncs.com/login.jpg"
+      <img src="http://web-ffisher.oss-cn-hangzhou.aliyuncs.com/signup.jpg"
            class="bg">
       <!-- 登录表单 -->
       <div class="login">
-        <h2>Sign In</h2>
+        <h2>Sign Up</h2>
         <div class="inputBox">
           <input type="text"
-                 placeholder="Username"
-                 v-model="username">
+                 placeholder="Username">
         </div>
         <div class="inputBox"
              id="pass">
           <input type="password"
-                 placeholder="PassWord"
-                 v-model="password">
+                 placeholder="PassWord">
         </div>
         <div class="inputBox">
           <input type="submit"
-                 value="Login"
+                 value="Go"
                  id="btn"
-                 @click="login">
+                 @click="toLogin">
         </div>
         <div class="group">
-          <router-link to="/signup"> Sign up </router-link>
           <a href="#">Forget PassWord</a>
+          <a href="#">Sign up</a>
         </div>
       </div>
       <!-- 动态效果 -->
@@ -36,24 +34,11 @@
 </template>
 
 <script>
-import { login } from '@/api/login'
 export default {
-  name: 'LoginIndex',
-  data () {
-    return {
-      username: '',
-      password: ''
-    }
-  },
+  name: 'SignUpIndex',
   methods: {
-    async login () {
-      const res = await login(this.username, this.password)
-      console.log(res)// 登录请求token打印 后期删除
-      if (res.code === 1) {
-        this.$router.push('/test')
-      } else {
-        alert(res.msg)
-      }
+    toLogin () {
+      this.$router.push('/login')
     }
   }
 
