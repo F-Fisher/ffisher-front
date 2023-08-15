@@ -22,10 +22,10 @@
                  id="btn"
                  @click="toLogin">
         </div>
-        <div class="group">
+        <!-- <div class="group">
           <a href="#">Forget PassWord</a>
           <a href="#">Sign up</a>
-        </div>
+        </div> -->
       </div>
       <!-- 动态效果 -->
       <div class="flower"></div>

@@ -41,8 +41,8 @@ export default {
   name: 'LoginIndex',
   data () {
     return {
-      username: '',
-      password: ''
+      username: 'root',
+      password: '123456'
     }
   },
   methods: {
