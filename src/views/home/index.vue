@@ -20,10 +20,15 @@
     </div>
     <!-- 中间 -->
     <div class="main">
-      <div class="massage"
-           :key="item"
-           v-for="item in 7">
+      <div>
+        <mavon-editor v-model="content"
+                      ref="md"
+                      @change="change"
+                      style="min-height: 300px" />
+
+        <button @click="submit">提交</button>
       </div>
+      <div v-html="html"></div>
     </div>
     <!-- 右边 -->
     <div class="details">details</div>
@@ -31,8 +36,35 @@
 </template>
 
 <script>
+import { mavonEditor } from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 export default {
-  name: 'homeIndex'
+  name: 'homeIndex',
+  components: {
+    mavonEditor
+  },
+  data () {
+    return {
+      content: '', // 输入的markdown
+      html: '', // 及时转的html
+      defaultOpen: 'preview',
+      subfield: false
+    }
+  },
+  methods: {
+    // 所有操作都会被解析重新渲染
+    change (value, render) {
+      // render 为 markdown 解析后的结果[html]
+      this.html = render
+    },
+    // 提交
+    submit () {
+      console.log(this.content)
+      console.log(this.html)
+    }
+  },
+  mounted () {
+  }
 }
 </script>
 
