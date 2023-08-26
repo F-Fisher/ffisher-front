@@ -41,15 +41,18 @@ export default {
   name: 'LoginIndex',
   data () {
     return {
-      username: 'root',
-      password: '123456'
+      // 登录栏
+      username: '',
+      password: ''
     }
   },
   methods: {
     async login () {
+      // this.$router.push('/test') // 点击即登录
       const res = await login(this.username, this.password)
       console.log(res)// 登录请求token打印 后期删除
       if (res.code === 1) {
+        this.$store.commit('user/setUserInfo', res.data)
         this.$router.push('/test')
       } else {
         alert(res.msg)

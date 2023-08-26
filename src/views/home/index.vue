@@ -1,37 +1,48 @@
-<template>
-  <div class="box">
-    <!-- 左侧 -->
-    <!-- 用户信息 -->
-    <div class="user">
-      <div class="userInfo">
-        <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
-        <span id="username">username</span>
-        <span id="lever">lv6</span>
-      </div>
-      <!-- 用户msg -->
-      <span id="userMsg">这里是用户签名地区11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</span>
-      <!-- 文章列表 -->
-      <ul>
-        <li class="title">文章列表</li>
-        <li class="preview">1111111111</li>
-        <li class="preview">1111111111</li>
-        <li class="preview">1111111111</li>
-      </ul>
-    </div>
-    <!-- 中间 -->
-    <div class="main">
-      <div>
-        <mavon-editor v-model="content"
-                      ref="md"
-                      @change="change"
-                      style="min-height: 300px" />
+<template >
+  <div class="home"> <!-- head -->
+    <div class="head">head</div>
+    <div class="box">
 
-        <button @click="submit">提交</button>
+      <!-- 左侧 -->
+      <!-- 用户信息 -->
+      <div class="user">
+        <div class="userInfo">
+          <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+          <span id="username">username</span>
+          <span id="lever">lv6</span>
+        </div>
+        <!-- 用户msg -->
+        <span id="userMsg">这里是用户签名地区11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</span>
+        <!-- 文章列表 -->
+        <ul>
+          <li class="title">文章列表</li>
+          <li class="preview">1111111111</li>
+          <li class="preview">1111111111</li>
+          <li class="preview">1111111111</li>
+        </ul>
       </div>
-      <div v-html="html"></div>
+      <!-- 中间 -->
+      <div class="main">
+        <div v-for="item in 5"
+             :key="item">
+          <mavon-editor v-model="content"
+                        ref="md"
+                        @change="change"
+                        style="min-height: 300px" />
+
+          <button @click="submit">提交</button>
+        </div>
+        <div v-html="html"></div>
+      </div>
+      <!-- 右边 -->
+      <div class="details">
+        <!-- <el-autocomplete v-model="state"
+                         :fetch-suggestions="querySearchAsync"
+                         placeholder="请输入内容"
+                         @select="handleSelect">
+        </el-autocomplete> -->
+      </div>
     </div>
-    <!-- 右边 -->
-    <div class="details">details</div>
   </div>
 </template>
 
@@ -46,9 +57,7 @@ export default {
   data () {
     return {
       content: '', // 输入的markdown
-      html: '', // 及时转的html
-      defaultOpen: 'preview',
-      subfield: false
+      html: '' // 及时转的html
     }
   },
   methods: {
@@ -61,15 +70,36 @@ export default {
     submit () {
       console.log(this.content)
       console.log(this.html)
+    },
+    handleScroll () {
+      // const thisScroll = document.documentElement.scrollTop
+      // if (Number(thisScroll) >= 54) {
+      //   const top = document.documentElement.scrollTop - 54 + 'px'
+      //   document.querySelector('.user').style.marginTop = top
+      // } else {
+      //   console.log(typeof thisScroll)
+      // }
     }
   },
   mounted () {
+    // window.addEventListener('scroll', this.handleScroll, true)
   }
 }
 </script>
 
-<style>
-.main::-webkit-scrollbar-track {
+<style scoped>
+* {
+  margin: 0;
+  padding: 0;
+}
+.head {
+  margin: 0 auto;
+  margin-bottom: 6px;
+  width: 1240px;
+  height: 40px;
+  background-color: pink;
+}
+/* .main::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0, 2);
   border-radius: 0;
   background: rgba(0, 0, 0, 0.1);
@@ -86,7 +116,7 @@ export default {
   height: 900px;
   overflow-y: scroll;
   overflow-x: hidden;
-}
+} */
 .main .massage {
   background-color: #fff;
   margin-top: 6px;
@@ -154,9 +184,13 @@ ul .preview {
   border-radius: 5px;
 }
 .user {
+  position: sticky;
+  top: 2px;
+  left: 2px;
+  float: left;
   margin: 6px;
   display: block;
-  /* height: 1500px; */
+  height: 1000px;
   width: 240px;
   background-color: #d3c3c3;
   border-radius: 5px;
@@ -174,6 +208,7 @@ ul .preview {
   line-height: 40px;
 }
 .details {
+  float: right;
   margin: 6px;
   display: block;
   width: 240px;

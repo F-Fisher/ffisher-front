@@ -1,7 +1,7 @@
 import axios from 'axios'
 // 创建axios实例 进行自定义
 const instance = axios.create({
-  baseURL: 'http://localhost:9000',
+  baseURL: 'http://62.234.16.65:9000',
   // 超时时间
   timeout: 5000
 })

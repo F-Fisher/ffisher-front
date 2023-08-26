@@ -4,6 +4,7 @@ import Login from '@/views/login'
 import Sinner from '@/views/sinner'
 import Test from '@/views/home'
 import SignUp from '@/views/signUp'
+import UpLoad from '@/views/upLoad'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,10 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: SignUp
+  }, {
+    path: '/upload',
+    name: 'UpLoad',
+    component: UpLoad
   }
 ]
 
