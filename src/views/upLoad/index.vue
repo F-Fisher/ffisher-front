@@ -6,8 +6,9 @@
     <mavon-editor v-model="content"
                   ref="md"
                   @change="change"
-                  style="min-height: 600px" />
-    <button @click="submit">提交</button>
+                  id="markDown" />
+    <el-button id="submit"
+               @click="submit">提交</el-button>
 
   </div>
 </template>
@@ -42,4 +43,15 @@ export default {
 </script>
 
 <style>
+#markDown {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  height: 700px;
+  width: 1240px;
+}
+#submit {
+  display: block;
+  width: 1240px;
+  margin: 0 auto;
+}
 </style>

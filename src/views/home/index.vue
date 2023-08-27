@@ -23,36 +23,35 @@
       </div>
       <!-- 中间 -->
       <div class="main">
-        <div v-for="item in 5"
-             :key="item">
-          <mavon-editor v-model="content"
-                        ref="md"
-                        @change="change"
-                        style="min-height: 300px" />
-
-          <button @click="submit">提交</button>
+        <div v-for="( item , index ) in mainMassage"
+             :key="item.id">
+          <!-- 中间单条信息 -->
+          <div class="contentMsg">
+            <img src="
+http://web-ffisher.oss-cn-hangzhou.aliyuncs.com/1.jpg"
+                 alt="">
+            <div class="msg">
+              <h2>{{index}}.{{item.main}}</h2>
+            </div>
+          </div>
         </div>
         <div v-html="html"></div>
       </div>
       <!-- 右边 -->
       <div class="details">
-        <!-- <el-autocomplete v-model="state"
-                         :fetch-suggestions="querySearchAsync"
-                         placeholder="请输入内容"
-                         @select="handleSelect">
-        </el-autocomplete> -->
+        <el-button type="success"
+                   id="write"
+                   @click="writeClick">WRITE</el-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 export default {
   name: 'homeIndex',
   components: {
-    mavonEditor
   },
   data () {
     return {
@@ -71,18 +70,17 @@ export default {
       console.log(this.content)
       console.log(this.html)
     },
-    handleScroll () {
-      // const thisScroll = document.documentElement.scrollTop
-      // if (Number(thisScroll) >= 54) {
-      //   const top = document.documentElement.scrollTop - 54 + 'px'
-      //   document.querySelector('.user').style.marginTop = top
-      // } else {
-      //   console.log(typeof thisScroll)
-      // }
+    // 跳转upload界面
+    writeClick () {
+      this.$router.push('/upload')
     }
   },
   mounted () {
-    // window.addEventListener('scroll', this.handleScroll, true)
+  },
+  computed: {
+    mainMassage: function () {
+      return this.$store.state.main.mainMassage
+    }
   }
 }
 </script>
@@ -92,6 +90,31 @@ export default {
   margin: 0;
   padding: 0;
 }
+/* write按钮 */
+#write {
+  width: 240px;
+  height: 80px;
+  color: green;
+}
+/* 中间条信息 */
+.contentMsg {
+  display: flex;
+  margin-bottom: 6px;
+  height: 245px;
+  border-radius: 6px;
+  background-color: rgb(202, 140, 140);
+  overflow: hidden;
+}
+.contentMsg img {
+  width: 40%;
+  object-fit: cover;
+}
+.contentMsg .msg {
+  background-color: rgb(173, 132, 132);
+  height: 100%;
+  width: 60%;
+}
+
 .head {
   margin: 0 auto;
   margin-bottom: 6px;
@@ -99,31 +122,7 @@ export default {
   height: 40px;
   background-color: pink;
 }
-/* .main::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0, 2);
-  border-radius: 0;
-  background: rgba(0, 0, 0, 0.1);
-}
-.main::-webkit-scrollbar-thumb {
-  border-radius: 3px;
-  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-  background: rgba(0, 0, 0, 0.2);
-}
-.main::-webkit-scrollbar {
-  width: 6px;
-}
-.main {
-  height: 900px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-} */
-.main .massage {
-  background-color: #fff;
-  margin-top: 6px;
-  border-radius: 6px;
-  height: 300px;
-  width: 732px;
-}
+/* 文章列表 */
 ul {
   margin: 0;
   padding: 0;
